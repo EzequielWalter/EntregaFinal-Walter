@@ -4,7 +4,7 @@ creamos un entorno virtual con "py -m venv <nombre entorno virtual>"
 activar el entorno virtual con ". <nombre entorno virtual>/Scripts/activate"
 ( En caso de usar linux o mac reemplazar el 'Scripts' por 'bin )
 
-pip install django
+pip install Django
 
 para probar si django estaba instalado creamos un requirements.txt ejecutando 
 con el entorno virtual activo el siguiente codigo: "pip freeze > requirements.txt"

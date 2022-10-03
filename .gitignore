@@ -1,2 +1,3 @@
 venv-proyectoclases
 __pycache__
+db.sqlite3
