@@ -13,12 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path, include
 from home import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('home/', include('home.urls')),            # Entra por home/ y va a home.urls
     path('', include('home.urls')),                   # Otra forma de hacer lo mismo
-    path('admin/', admin.site.urls),
+    # path('', include('otraAplicacion.urls')),       # Asi se haría si tuviera varias aplicaciones
+    path('avanzado/', include('avanzado.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('admin/', admin.site.urls),                  # Esta tiene que estar siempre
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    # Le agrega a las urlpatterns el settings. Se hace asi por que es algo distinto

@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+
+
+{% block title_pagina %}
+<title>Cambiar Contraseña</title>
+{% endblock title_pagina %}
+
+
+{% block mi_contenido %}
+<form action={% url 'cambiar_contrasenia' %} method="POST">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <button>Cambiar</button>
+ 
+    
+</form>
+{% endblock mi_contenido %}

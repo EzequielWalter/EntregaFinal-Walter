@@ -1,0 +1,31 @@
+{% extends 'home/base.html'%}       <!-- HERENCIA -> Toma toda la configuracion base del archivo base.html-->
+
+{% block title_pagina %}    <!-- Titulo del "padre" pisado en el "hijo"-->
+<title>Inicio</title>
+{% endblock title_pagina %}
+
+{% block mi_contenido %} <!-- IDENTIFICA QUE PARTE DEL "HIJO" PUEDE SER OCUPADA DENTRO DEL TEMPLATE "PADRE"-->
+    {% block mi_header %}
+    <!-- Masthead-->
+        <header class="masthead">      <!-- ES LA ETIQUETA DE LA "CABECERA" DE LA PAGINA -->
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">
+                            {% block h1_texto_header %}
+                            Mi primer pagina!
+                            {% endblock h1_texto_header %}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    {% endblock mi_header %}
+
+    {% block index_contenido %}     <!-- Se pueden anidar las herencias-->
+    {% endblock index_contenido %}
+
+{% endblock mi_contenido %}

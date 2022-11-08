@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+
+{% block title_pagina %}
+<title>Acerca de nosotros</title>
+{% endblock title_pagina %}
+
+{% block mi_contenido %}
+    {% block mi_header %}
+    <!-- Masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">
+                            {% block h1_texto_header %}
+                            Acerca de nosotros
+                            {% endblock h1_texto_header %}
+                            </h1>
+                        Somos un grupo de Alumnos del curso de Python de Corderhouse.
+
+                        Mi nombre es Ezequiel Walter, tengo 35 años y actualmente me encuentro iniciando la formación en programación.
+
+                        En esta pagina encontrarás todo lo interesante sobre autos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    {% endblock mi_header %}
+
+    {% block index_contenido %}
+    {% endblock index_contenido %}
+
+{% endblock mi_contenido %}

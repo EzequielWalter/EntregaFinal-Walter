@@ -1,0 +1,30 @@
+{% extends 'home/base.html'%}
+
+{% block title_pagina %}
+<title>Ver mascotas</title>
+{% endblock title_pagina %}
+
+{% block mi_contenido %}
+    <a class="navbar-brand" href={% url 'crear_mascota' %}>Crear Mascota</a>
+    <h1>Listado de mascotas:</h1>
+
+<form action={% url 'ver_mascotas' %} method="GET">
+            {{formulario}}
+        <button>Buscar</button>
+</form>
+<p>
+    {% if object_list %}            <!-- En CBV es así la identificacion de elementos de una lista-->
+
+        {% for mascota in object_list %}
+            <li>
+                <a href={% url 'ver_mascota' mascota.id %}>{{mascota}}</a>
+                <a href={% url 'editar_mascota' mascota.id %}>Editar</a>
+                <a href={% url 'eliminar_mascota' mascota.id %}>Eliminar</a>
+            </li>
+        {% endfor %}
+        
+    {% else %}
+        <p>No se encontraron mascotas</p>
+    {% endif %}
+</p>
+{% endblock mi_contenido %}

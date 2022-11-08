@@ -1,0 +1,20 @@
+{% extends 'home/base.html' %}
+
+
+{% block title_pagina %}
+<title>Editar Mascota</title>
+{% endblock title_pagina %}
+
+
+{% block mi_contenido %}
+<form action={% url 'editar_mascota' mascota.id %} method="POST">
+    {% csrf_token %}
+    <table>
+        {{form.media}}
+        {{form}}                <!--En CBV es "Form"-->>
+    </table>
+    <button>Editar</button>
+ 
+    
+</form>
+{% endblock mi_contenido %}

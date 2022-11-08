@@ -1,15 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'home/index.html'%}       <!-- HERENCIA -> Toma toda la configuracion base del archivo base.html-->
+
+{% block title_pagina %}    <!-- Titulo del "padre" pisado en el "hijo"-->
+<title>Ver familiares</title>
+{% endblock title_pagina %}
+
+{% block h1_texto_header %} <!--Puedo llamar a un bloque contenido dentro de otro que no llamo-->
+Ver familiares
+{% endblock h1_texto_header %}
+
+{% block index_contenido %}    <!-- IDENTIFICA QUE PARTE DEL "HIJO" PUEDE SER OCUPADA DENTRO DEL TEMPLATE "PADRE". En este caso el "padre" es Index-->
+    <a class="navbar-brand" href={% url 'crear_familiar' %}>Crear familiar</a>
     <h1>Listado de familiares:</h1>
-    {% for familiar in familiares %}
-        <li>{{familiar.nombre}} {{familiar.apellido}} - edad: {{familiar.edad}} años</li>
-    {% endfor %}
-</body>
-</html>
+
+<form action={% url 'ver_familiares' %} method="GET">       <!-- Se usa el GET porque es para buscar-->
+            {{formulario}}
+        <button>Buscar</button>
+</form>
+<p>
+    {% if familiares %}
+
+        {% for familiar in familiares %}
+            <li>{{familiar.nombre}} {{familiar.apellido}} - edad: {{familiar.edad}} años</li>
+        {% endfor %}
+        
+    {% else %}
+        <p>No se encontraron familiares</p>
+    {% endif %}
+</p>
+{% endblock index_contenido %}
