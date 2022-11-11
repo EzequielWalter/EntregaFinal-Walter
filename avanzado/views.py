@@ -31,8 +31,8 @@ def crear_mascota(request):
             mascota = Mascota(
                 nombre=datos['nombre'],
                 tipo=datos['tipo'],
-                edad=datos['edad'],
-                fecha_nacimiento=datos['fecha_nacimiento']
+                edad_media_de_vida=datos['edad_media_de_vida'],
+                fecha_de_creacion=datos['fecha_de_creacion']
             )
             mascota.save()
             return redirect('ver_mascotas')
@@ -55,8 +55,8 @@ def editar_mascota(request, id):
             
             mascota.nombre = datos['nombre']
             mascota.tipo = datos['tipo']
-            mascota.edad = datos['edad']
-            mascota.fecha_nacimiento = datos['fecha_nacimiento']
+            mascota.edad_media_de_vida = datos['edad']
+            mascota.fecha_de_creacion = datos['fecha_de_creacion']
             mascota.save()
             return redirect('ver_mascotas')
         else:
@@ -66,13 +66,14 @@ def editar_mascota(request, id):
         initial={
             'nombre': mascota.nombre, 
             'tipo': mascota.tipo,
-            'edad': mascota.edad,
-            'fecha_nacimiento': mascota.fecha_nacimiento
+            'edad_media_de_vida': mascota.edad,
+            'fecha_de_creacion': mascota.fecha_de_creacion
         }
     )    
     
     return render(request, 'avanzado/editar_mascota.html', {'formulario': formulario, 'mascota': mascota})
 
+@login_required
 def eliminar_mascota(request, id):
     
     mascota = Mascota.objects.get(id=id)
@@ -88,9 +89,9 @@ class ListaMascotas(ListView):
     template_name = 'avanzado/ver_mascotas_cbv.html'
     
     def get_queryset(self):
-        test = self.request.GET.get('nombre', '')
-        if test:
-            object_list = self.model.objects.filter(nombre_icontains=nombre)
+        nombre = self.request.GET.get('nombre', '')
+        if nombre:
+            object_list = self.model.objects.filter(nombre__icontains=nombre)
         else:
             object_list = self.model.objects.all()
         return object_list
@@ -104,13 +105,13 @@ class CrearMascota(CreateView):
     model = Mascota
     success_url = '/avanzado/mascotas/'                         #Direccion a la cual accede cuando se crea (idem Redirect)
     template_name = 'avanzado/crear_mascota_cbv.html'           #Template al que va  
-    fields = ['nombre', 'tipo', 'edad', 'fecha_nacimiento', 'descripcion']     #Campos que queremos que el elementos muestre el formulario (sale de lo que hay en el Modelo)
+    fields = ['nombre', 'tipo', 'edad_media_de_vida', 'fecha_de_creacion', 'descripcion']     #Campos que queremos que el elementos muestre el formulario (sale de lo que hay en el Modelo)
     
-class EditarMascota(UpdateView):
+class EditarMascota(LoginRequiredMixin, UpdateView):
     model = Mascota
     success_url = '/avanzado/mascotas/' 
     template_name = 'avanzado/editar_mascota_cbv.html'
-    fields = ['nombre', 'tipo', 'edad', 'fecha_nacimiento', 'descripcion']
+    fields = ['nombre', 'tipo', 'edad_media_de_vida', 'fecha_de_creacion', 'descripcion']
         
 class EliminarMascota(LoginRequiredMixin, DeleteView):              # El LoginRequiredMixin va al principio
     model = Mascota

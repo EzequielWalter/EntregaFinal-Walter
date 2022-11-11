@@ -24,6 +24,8 @@
     <li>Nombre: {{request.user.first_name}}</li>               <!-- Le pide el firs name al usuario-->
     <li>Apellido: {{request.user.last_name}}</li>
     <li>Email: {{request.user.email}}</li>
+    <li>Descripcion: {{request.user.description}}</li>
+    <li>Link: {{request.user.link}}</li>
 </p>
     
 <a href={% url 'editar_perfil'%}><button>Editar Perfil</button></a>

@@ -24,9 +24,9 @@
             <div class="container">
                 <a class="navbar-brand" href={% url 'index' %}>Index</a>   <!-- la '<a' es la etiqueta ancla. el Index es el nombre de la url-->
                 <a class="navbar-brand" href={% url 'about' %}>Acerca de nosotros</a>
-                <a class="navbar-brand" href={% url 'hola' %}>Hola</a>
+                {% comment %} <a class="navbar-brand" href={% url 'hola' %}>Hola</a>
                 <a class="navbar-brand" href={% url 'fecha' %}>Fecha</a>
-                <a class="navbar-brand" href={% url 'ver_familiares' %}>Ver Familiares</a>
+                <a class="navbar-brand" href={% url 'ver_familiares' %}>Ver Familiares</a> {% endcomment %}
                 <a class="navbar-brand" href={% url 'ver_mascotas' %}>Ver Mascotas</a>
                 {% if request.user.is_authenticated %}           <!-- Si no tiene información request.user es porque no está logueado el usuario-->
                     <a class="navbar-brand" href={% url 'perfil' %}>{{request.user.username}}</a>      <!-- Pone el nombre de usuario cuando se loguea-->

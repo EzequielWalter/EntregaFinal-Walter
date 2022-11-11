@@ -62,6 +62,8 @@ def editar_perfil(request):
             user.last_name = data_nueva['last_name']
             user.email = data_nueva['email']
             user.extensionusuario.avatar = data_nueva['avatar']
+            user.description = data_nueva['description']
+            user.link = data_nueva['link']
             
             user.extensionusuario.save()
             user.save()                         # Hay dos save() porque son dos modelos distintos

@@ -6,11 +6,23 @@
 
 {% block mi_contenido %}
     <p>
-        <li>Nombre: {{mascota.nombre}}</li> 
+        <li>Nombre de la raza: {{mascota.nombre}}</li> 
         <li>Tipo: {{mascota.tipo}}</li>
-        <li>Edad: {{mascota.edad}}</li>
-        <li>Fecha de Nacimiento: {{mascota.fecha_nacimiento}}</li>
-        <li>Descripcion: {{mascota.descripcion | safe }}</li>
+        <li>Edad media de vida: {{mascota.edad_media_de_vida}}</li>
+        <li>Fecha de Creacion: {{mascota.fecha_de_creacion}}</li>
+        <li>Características de la raza: {{mascota.descripcion | safe }}</li>
     </p>
+    
+    
+    <p>
+        <a class="navbar-brand" href={% url 'editar_mascota' mascota.id %}>Editar</a>
+        <a class="navbar-brand" href={% url 'eliminar_mascota' mascota.id %}>Eliminar</a>
+
+    </p>
+    
+    
+    <a class="navbar-brand" href={% url 'crear_mascota' %}>Crear Nueva Mascota</a>
+
+    
 
 {% endblock mi_contenido %}
