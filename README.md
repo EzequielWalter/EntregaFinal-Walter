@@ -19,7 +19,7 @@
     c. Desde la información del perfil podrás tambien Editar los datos y Cambiar la Contraseña.
     d. En cualquier momento podrás cerrar tu sesión de usuario dando en el botón superior "Cerrar Sesión".
 
-
+--- Ver Video_explicativo.md ---
 
 # INTEGRANTES DEL GRUPO
 
