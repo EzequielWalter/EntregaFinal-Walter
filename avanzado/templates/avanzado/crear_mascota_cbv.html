@@ -10,7 +10,7 @@
 <form action={% url 'crear_mascota' %} method="POST">
     {% csrf_token %}
     <table>
-        {{form}}                <!--En CBV es "Form"-->>
+        {{form}}
     </table>
     <button>Crear</button>
  

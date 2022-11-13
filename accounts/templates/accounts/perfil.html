@@ -12,8 +12,8 @@
 </p>
 <p>
     <li>
-        {% if request.user.extensionusuario.avatar %} <!-- Es para que no muestre error si la imagen no existe-->
-            <img src={{request.user.extensionusuario.avatar.url}}> <!-- Para mostrar imágenes-->
+        {% if request.user.extensionusuario.avatar %}
+            <img src={{request.user.extensionusuario.avatar.url}}>
         {%else%}
         Imagen no cargada
         {% endif %}
@@ -21,7 +21,7 @@
 </p>
 
 <p>
-    <li>Nombre: {{request.user.first_name}}</li>               <!-- Le pide el firs name al usuario-->
+    <li>Nombre: {{request.user.first_name}}</li>
     <li>Apellido: {{request.user.last_name}}</li>
     <li>Email: {{request.user.email}}</li>
     <li>Descripcion: {{request.user.description}}</li>

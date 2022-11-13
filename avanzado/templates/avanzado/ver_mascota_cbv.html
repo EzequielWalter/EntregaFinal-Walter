@@ -13,6 +13,14 @@
         <li>Características de la raza: {{mascota.descripcion | safe }}</li>
     </p>
     
+    <p>
+        <li>Imagen representativa de la raza:</li>
+        {% if mascota.imagen %}
+                <img src={{mascota.imagen.url}}>
+        {%else%}
+            Imagen no cargada
+        {% endif %}
+    </p>
     
     <p>
         <a class="navbar-brand" href={% url 'editar_mascota' mascota.id %}>Editar</a>

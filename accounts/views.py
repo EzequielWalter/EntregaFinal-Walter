@@ -1,10 +1,9 @@
 from ast import Pass
 from django.shortcuts import redirect, render
-from django.contrib.auth.forms import AuthenticationForm    #Formulario de Django
-from django.contrib.auth.forms import UserCreationForm      #Formulario de Django para Registrar usuarios
-# from django.contrib.auth import login as django_login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from accounts.forms import EditarPerfilFormulario, MiFormularioDeCreación           # Importa en formulario que creamos en forms
+from accounts.forms import EditarPerfilFormulario, MiFormularioDeCreación
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -16,13 +15,12 @@ from accounts.models import ExtensionUsuario
 def mi_login(request):
     
     if request.method == 'POST':
-        formulario = AuthenticationForm(request, data=request.POST)     #Es la forma de hacerlo en el AuthenticationForm
-        if formulario.is_valid():                       # Devuelve un True si el usuario/constraseña es correcto
-            usuario = formulario.get_user()             # Devuelve el usuario del formulario
+        formulario = AuthenticationForm(request, data=request.POST)
+        if formulario.is_valid():
+            usuario = formulario.get_user()
             login(request, usuario)
-            # django_login(request, usuario)
-            extensionUsuario, es_nuevo = ExtensionUsuario.objects.get_or_create(user=request.user)  # Muestra la imagen del usuario
-            return redirect('index')                    # Cuando inicia sesion lo manda a Index
+            extensionUsuario, es_nuevo = ExtensionUsuario.objects.get_or_create(user=request.user)
+            return redirect('index')
     else:
         formulario = AuthenticationForm()
     
@@ -33,9 +31,9 @@ def registrar(request):
     if request.method == 'POST':
         formulario = MiFormularioDeCreación(request.POST)
         if formulario.is_valid():
-            formulario.save()               # Crea directamente un usuario nuevo
+            formulario.save()
             
-            return redirect('index')                    # Cuando inicia sesion lo manda a Index
+            return redirect('index')
     else:
         formulario = MiFormularioDeCreación()
         
@@ -44,7 +42,7 @@ def registrar(request):
 @login_required
 def perfil(request):
     
-    extensionUsuario, es_nuevo =ExtensionUsuario.objects.get_or_create(user=request.user)          # Si extension usuario no existe, lo crea.
+    extensionUsuario, es_nuevo =ExtensionUsuario.objects.get_or_create(user=request.user)
     
     return render(request, 'accounts/perfil.html', {})
 
@@ -54,7 +52,7 @@ def editar_perfil(request):
     user = request.user
     
     if request.method == 'POST':
-        formulario = EditarPerfilFormulario(request.POST, request.FILES)            # El request.FILES es para formularios que llevan imagen (avatar)
+        formulario = EditarPerfilFormulario(request.POST, request.FILES)
         
         if formulario.is_valid():
             data_nueva = formulario.cleaned_data
@@ -66,7 +64,7 @@ def editar_perfil(request):
             user.link = data_nueva['link']
             
             user.extensionusuario.save()
-            user.save()                         # Hay dos save() porque son dos modelos distintos
+            user.save()
             return redirect('perfil')
 
     else:
@@ -83,4 +81,4 @@ def editar_perfil(request):
 
 class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
     template_name = 'accounts/cambiar_contrasenia.html'
-    success_url = '/accounts/perfil/'    # Donde va despues de que se cambie la contraseña
+    success_url = '/accounts/perfil/'

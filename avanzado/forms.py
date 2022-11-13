@@ -12,7 +12,8 @@ class Mascota(forms.Form):
     tipo = forms.CharField(max_length=20)
     edad = forms.IntegerField()
     fecha_nacimiento = forms.DateField()
-    descripcion = RichTextFormField(required=False)      
+    descripcion = RichTextFormField(required=False)
+    imagen = forms.ImageField(required=False)       
 
 class BusquedaMascota(forms.Form):
     nombre = forms.CharField(max_length=20, required=False)

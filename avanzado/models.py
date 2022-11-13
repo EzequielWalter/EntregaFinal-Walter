@@ -8,8 +8,9 @@ class Mascota(models.Model):
     tipo = models.CharField(max_length=20)
     edad_media_de_vida = models.IntegerField()
     fecha_de_creacion = models.DateField()
-    descripcion = RichTextField(null=True)                                       #Richtext
+    descripcion = RichTextField(null=True)
+    imagen = models.ImageField(upload_to='imagenes', null=True, blank=True)
 
-    def __str__(self):                                      # Sirve para poner los datos de la base de datos para mostarla desde el ADMIN
+    def __str__(self):
         return f'Nombre de raza: {self.nombre} - Tipo de animal: {self.tipo}'
     

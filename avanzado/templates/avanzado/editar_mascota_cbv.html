@@ -7,11 +7,11 @@
 
 
 {% block mi_contenido %}
-<form action={% url 'editar_mascota' mascota.id %} method="POST">
+<form action={% url 'editar_mascota' mascota.id %} method="POST" enctype='multipart/form-data'>
     {% csrf_token %}
     <table>
         {{form.media}}
-        {{form}}                <!--En CBV es "Form"-->>
+        {{form}}
     </table>
     <button>Editar</button>
  
